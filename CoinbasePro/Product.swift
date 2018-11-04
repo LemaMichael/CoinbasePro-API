@@ -27,6 +27,14 @@ struct Product: Codable {
     let limitOnly: Bool
     let cancelOnly: Bool
     
+    // Added Info
+    var open: String?
+    var high: String?
+    var low: String?
+    var volume: String?
+    
+    var currentPrice: String?
+
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case baseCurrency = "base_currency"
@@ -43,5 +51,11 @@ struct Product: Codable {
         case postOnly = "post_only"
         case limitOnly = "limit_only"
         case cancelOnly = "cancel_only"
+        
+        case open = "open"
+        case high = "high"
+        case low = "low"
+        case volume = "volume"
+        case currentPrice = "currentPrice"
     }
 }

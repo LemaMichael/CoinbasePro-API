@@ -12,8 +12,6 @@ class ViewController: UIViewController {
     
     
     var products = Products()
-    
-    
     let baseAPI = "https://api.pro.coinbase.com"
     
     override func viewDidLoad() {
@@ -21,8 +19,9 @@ class ViewController: UIViewController {
 
         requestProducts {
             print("Finished parsing data!")
-            self.filterProductbyCurrency(.USD)
-            self.filterProductbyCurrency(.BTC)
+            //self.filterProductbyCurrency(.USD)
+            //self.filterProductbyCurrency(.BTC)
+           self.getProductPrice()
         }
     }
     
@@ -41,13 +40,43 @@ class ViewController: UIViewController {
             }.resume()
     }
     
-    func filterProductbyCurrency(_ currency: QuoteCurrency) {
-        for product in products {
-            if product.quoteCurrency == currency.rawValue {
-                print(product.id)
+    func filterProductbyCurrency(_ currency: QuoteCurrency) ->  [Product] {
+        return self.products.filter { ($0.quoteCurrency == currency.rawValue) }
+    }
+    
+    func getProductPrice() {
+        for product in 0..<products.count {
+            fetchPrice(products[product].id) { (price) in
+                print(self.products[product].id)
+                self.products[product].currentPrice = price
+                print(self.products[product].currentPrice ?? "")
+            }
+            
+            fetch24HourStats(products[product].id) { (open, volume) in
+                self.products[product].open = open
+                self.products[product].volume = volume
+                print(self.products[product].open ?? "", self.products[product].volume ?? "")
             }
         }
-        print("\n")
+     
     }
+    
+    func fetchPrice(_ productId: String, callback: @escaping (String) -> Void) {
+        guard let url = URL(string: baseAPI + "/products/\(productId)/ticker") else { return }
+        Client.shared.getPrice(url) { (price) in
+            callback(price)
+        }
+        
+        
+    }
+    
+    func fetch24HourStats(_ productId: String, callback: @escaping (String, String) -> Void) {
+        guard let url = URL(string: baseAPI + "/products/\(productId)/stats") else { return }
+        Client.shared.get24HourStats(url) { (open, volume) in
+            callback(open, volume)
+        }
+    }
+    
+    
 }
 

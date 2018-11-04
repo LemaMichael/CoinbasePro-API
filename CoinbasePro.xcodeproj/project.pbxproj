@@ -14,6 +14,9 @@
 		4C00B3AE218E4AD200DF4E80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C00B3AC218E4AD200DF4E80 /* LaunchScreen.storyboard */; };
 		4C608A30218E53D900CC1625 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C608A2F218E53D900CC1625 /* Product.swift */; };
 		4C608A32218E5CE900CC1625 /* QuoteCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C608A31218E5CE900CC1625 /* QuoteCurrency.swift */; };
+		4C608A34218E6DA500CC1625 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C608A33218E6DA500CC1625 /* Client.swift */; };
+		4C608A36218E702400CC1625 /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C608A35218E702400CC1625 /* Ticker.swift */; };
+		4C608A38218E7C8500CC1625 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C608A37218E7C8500CC1625 /* Stats.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		4C00B3AF218E4AD200DF4E80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C608A2F218E53D900CC1625 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		4C608A31218E5CE900CC1625 /* QuoteCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCurrency.swift; sourceTree = "<group>"; };
+		4C608A33218E6DA500CC1625 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		4C608A35218E702400CC1625 /* Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticker.swift; sourceTree = "<group>"; };
+		4C608A37218E7C8500CC1625 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +65,9 @@
 			isa = PBXGroup;
 			children = (
 				4C00B3A3218E4AD100DF4E80 /* AppDelegate.swift */,
+				4C608A33218E6DA500CC1625 /* Client.swift */,
+				4C608A37218E7C8500CC1625 /* Stats.swift */,
+				4C608A35218E702400CC1625 /* Ticker.swift */,
 				4C00B3A5218E4AD100DF4E80 /* ViewController.swift */,
 				4C608A31218E5CE900CC1625 /* QuoteCurrency.swift */,
 				4C608A2F218E53D900CC1625 /* Product.swift */,
@@ -142,8 +151,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C608A30218E53D900CC1625 /* Product.swift in Sources */,
+				4C608A36218E702400CC1625 /* Ticker.swift in Sources */,
 				4C00B3A6218E4AD100DF4E80 /* ViewController.swift in Sources */,
+				4C608A38218E7C8500CC1625 /* Stats.swift in Sources */,
 				4C00B3A4218E4AD100DF4E80 /* AppDelegate.swift in Sources */,
+				4C608A34218E6DA500CC1625 /* Client.swift in Sources */,
 				4C608A32218E5CE900CC1625 /* QuoteCurrency.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

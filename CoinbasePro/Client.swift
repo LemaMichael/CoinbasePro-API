@@ -40,5 +40,8 @@ class Client: NSObject {
             }.resume()
     }
     
+    func historicRate(_ request: URL, range: DateRange, granularity: Granularity, callback: @escaping(_ candles: Candles) -> Void) {
+        
+    }
     
 }

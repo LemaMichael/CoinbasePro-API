@@ -19,9 +19,9 @@ class ViewController: UIViewController {
 
         requestProducts {
             print("Finished parsing data!")
+            //self.getProductPrice()
             //self.filterProductbyCurrency(.USD)
             //self.filterProductbyCurrency(.BTC)
-           self.getProductPrice()
         }
     }
     
@@ -66,8 +66,6 @@ class ViewController: UIViewController {
         Client.shared.getPrice(url) { (price) in
             callback(price)
         }
-        
-        
     }
     
     func fetch24HourStats(_ productId: String, callback: @escaping (String, String) -> Void) {
@@ -76,6 +74,12 @@ class ViewController: UIViewController {
             callback(open, volume)
         }
     }
+    
+    
+    func getHistoricRate(_ productId: String, callback: @escaping ()-> Void) {
+        guard let url = URL(string: baseAPI +  "/products/\(productId)/candles") else { return }
+    }
+    
     
     
 }

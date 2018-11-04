@@ -45,17 +45,18 @@ class Client: NSObject {
             guard let data = data, error == nil else { return }
             do {
                 let decoder = JSONDecoder()
-                let candles = try decoder.decode(Candles.self, from: data)
-//                for item in candles {
-//                    print("Close Price: \(item.close)")
-//                }
+                var candles = try decoder.decode(Candles.self, from: data)
+                candles = candles.reversed()
                 
-                print(candles[0].time)
-                print(Date(timeIntervalSince1970: candles[0].time))
-                print(candles.last!.time)
-                print(Date(timeIntervalSince1970: candles.last!.time))
-                
-                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MMM d, yyyy, h:mm a"
+
+                for candle in candles {
+                    let date = Date(timeIntervalSince1970: candle.time)
+                    print(dateFormatter.string(from: date))
+                    
+                }
+                            
             } catch let error as NSError {
                 print("Failed to get stats:  \(error.localizedDescription)")
                 print(request.absoluteString)

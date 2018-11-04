@@ -23,7 +23,7 @@ class ViewController: UIViewController {
             //self.filterProductbyCurrency(.USD)
             //self.filterProductbyCurrency(.BTC)
         }
-        self.getHistoricRate("BTC-USD", range: .year) { (Candles) in
+        self.getHistoricRate("BTC-USD", range: .month) { (Candles) in
             print(Candles)
         }
     }

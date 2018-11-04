@@ -17,6 +17,7 @@ public enum DateRange {
     case year
     case all
     
+    // Perhaps Return array of newOutputs?
     public func rangeAPI() -> String {
         let formatter = ISO8601DateFormatter()
         let end = formatter.string(from: Date())
@@ -31,7 +32,7 @@ public enum DateRange {
         case .hour:
             return (startDate(unit: .hour, amount: 1), .minute)
         case .day:
-            return (startDate(unit: .day, amount: 1), .hour)
+            return (startDate(unit: .day, amount: 1), .fiveMinutes)
         case .week:
             return (startDate(unit: .day, amount: 7), .hour)
         case .month:
@@ -39,7 +40,7 @@ public enum DateRange {
         case .year:
             return (startDate(unit: .month, amount: 9), .day) // Not complete
         case .all:
-            return (startDate(unit: .year, amount: 5), .hour) //?
+            return (startDate(unit: .year, amount: 1), .hour) //?
         }
     }
     

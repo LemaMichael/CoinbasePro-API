@@ -40,8 +40,21 @@ class Client: NSObject {
             }.resume()
     }
     
-    func historicRate(_ request: URL, range: DateRange, granularity: Granularity, callback: @escaping(_ candles: Candles) -> Void) {
-        
+    func gethistoricRate(_ request: URL, range: DateRange, callback: @escaping(_ candles: Candles) -> Void) {
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            guard let data = data, error == nil else { return }
+            do {
+                let decoder = JSONDecoder()
+                let candles = try decoder.decode(Candles.self, from: data)
+                for item in candles {
+                    print(item.close)
+                }
+                
+            } catch let error as NSError {
+                print("Failed to get stats:  \(error.localizedDescription)")
+                print(request.absoluteString)
+            }
+            }.resume()
     }
     
 }

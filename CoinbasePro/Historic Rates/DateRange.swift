@@ -9,35 +9,41 @@
 import UIKit
 
 public enum DateRange {
-    case oneHour
+
+    case hour
     case day
     case week
-    case month // 21600
-    case oneYear
+    case month
+    case year
     case all
     
-    public func dates()->(start:Date,end:Date) {
-        return (start(),Date())
+    public func rangeAPI() -> String {
+        let formatter = ISO8601DateFormatter()
+        let end = formatter.string(from: Date())
+        let start = formatter.string(from: self.start().0)
+        let granularity = self.start().1.rawValue
+        let newOutput = "candles?start=\(start)&end=\(end)&granularity=\(granularity)"
+        return newOutput
     }
     
-    public func start()->Date {
+    public func start()-> (Date, Granularity) {
         switch self {
-        case .oneHour:
-            return dateBack(unit: .hour, amount: 1)
+        case .hour:
+            return (dateBack(unit: .hour, amount: 1), .minute)
         case .day:
-            return dateBack(unit: .day, amount: 1)
+            return (dateBack(unit: .day, amount: 1), .hour)
         case .week:
-            return dateBack(unit: .day, amount: 7)
+            return (dateBack(unit: .day, amount: 7), .hour)
         case .month:
-            return dateBack(unit: .month, amount: 1)
-        case .oneYear:
-            return dateBack(unit: .year, amount: 1)
+            return (dateBack(unit: .month, amount: 1), .sixHours)
+        case .year:
+            return (dateBack(unit: .month, amount: 9), .day) // Not complete
         case .all:
-            return dateBack(unit: .year, amount: 5)
+            return (dateBack(unit: .year, amount: 5), .hour) //?
         }
     }
     
-    private func dateBack(unit:Calendar.Component,amount:Int)->Date {
+    private func dateBack(unit: Calendar.Component, amount:Int) -> Date {
         return Calendar.current.date(
             byAdding: unit,
             value: -amount,

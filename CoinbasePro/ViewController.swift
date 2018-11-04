@@ -23,6 +23,9 @@ class ViewController: UIViewController {
             //self.filterProductbyCurrency(.USD)
             //self.filterProductbyCurrency(.BTC)
         }
+        self.getHistoricRate("BTC-USD", range: .year) { (Candles) in
+            print(Candles)
+        }
     }
     
     func requestProducts(finished: @escaping () -> Void) {
@@ -76,8 +79,16 @@ class ViewController: UIViewController {
     }
     
     
-    func getHistoricRate(_ productId: String, callback: @escaping ()-> Void) {
-        guard let url = URL(string: baseAPI +  "/products/\(productId)/candles") else { return }
+    func getHistoricRate(_ productId: String, range: DateRange, callback: @escaping (Candles)-> Void) {
+        let urlString = baseAPI + "/products/\(productId)/\(candles(range))"
+        guard let url = URL(string: urlString) else { return }
+        Client.shared.gethistoricRate(url, range: range) { (candles) in
+            callback(candles)
+        }
+    }
+    
+    func candles(_ range: DateRange) -> String {
+        return range.rangeAPI()
     }
     
     

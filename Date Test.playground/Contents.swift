@@ -38,17 +38,17 @@ extension Formatter {
 // 2018-01-01T05:00:00
 let productId = "BTC-USD"
 //let granularity = "60"
-let granularity = "300"
+//let granularity = "300"
 //let granularity = "900"
 //let granularity = "3600"
 //let granularity = "21600"
-// let granularity = "86400"
+let granularity = "86400"
 
 let formatter = ISO8601DateFormatter()
 let currentDate = Date()
 let isoEnd = formatter.string(from: currentDate)
 
-let endDate = Calendar.current.date(byAdding: .day, value: -1, to: currentDate)!
+let endDate = Calendar.current.date(byAdding: .month, value: -9, to: currentDate)!
 let isoStart = formatter.string(from: endDate)
 
 let newOutput = baseURL + productId + "/candles?start=\(isoStart)&end=\(isoEnd)&granularity=\(granularity)"

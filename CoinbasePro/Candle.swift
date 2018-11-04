@@ -10,17 +10,17 @@ import Foundation
 
 typealias Candles = [Candle]
 
-public class Candle:Codable {
-    public let time:Date
-    public let low:Double
-    public let high:Double
-    public let open:Double
-    public let close:Double
-    public let volume:Double
+public class Candle: Codable {
+    public let time: Double
+    public let low: Double
+    public let high: Double
+    public let open: Double
+    public let close: Double
+    public let volume: Double
     
-    public required init(from decoder:Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         var container = try decoder.unkeyedContainer()
-        time = try container.decode(Date.self)
+        time = try container.decode(Double.self)
         low = try container.decode(Double.self)
         high = try container.decode(Double.self)
         open = try container.decode(Double.self)

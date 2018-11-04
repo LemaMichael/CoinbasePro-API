@@ -29,21 +29,21 @@ public enum DateRange {
     public func start()-> (Date, Granularity) {
         switch self {
         case .hour:
-            return (dateBack(unit: .hour, amount: 1), .minute)
+            return (startDate(unit: .hour, amount: 1), .minute)
         case .day:
-            return (dateBack(unit: .day, amount: 1), .hour)
+            return (startDate(unit: .day, amount: 1), .hour)
         case .week:
-            return (dateBack(unit: .day, amount: 7), .hour)
+            return (startDate(unit: .day, amount: 7), .hour)
         case .month:
-            return (dateBack(unit: .month, amount: 1), .sixHours)
+            return (startDate(unit: .month, amount: 1), .sixHours)
         case .year:
-            return (dateBack(unit: .month, amount: 9), .day) // Not complete
+            return (startDate(unit: .month, amount: 9), .day) // Not complete
         case .all:
-            return (dateBack(unit: .year, amount: 5), .hour) //?
+            return (startDate(unit: .year, amount: 5), .hour) //?
         }
     }
     
-    private func dateBack(unit: Calendar.Component, amount:Int) -> Date {
+    private func startDate(unit: Calendar.Component, amount:Int) -> Date {
         return Calendar.current.date(
             byAdding: unit,
             value: -amount,

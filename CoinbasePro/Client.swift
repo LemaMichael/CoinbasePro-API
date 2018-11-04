@@ -46,9 +46,15 @@ class Client: NSObject {
             do {
                 let decoder = JSONDecoder()
                 let candles = try decoder.decode(Candles.self, from: data)
-                for item in candles {
-                    print(item.close)
-                }
+//                for item in candles {
+//                    print("Close Price: \(item.close)")
+//                }
+                
+                print(candles[0].time)
+                print(Date(timeIntervalSince1970: candles[0].time))
+                print(candles.last!.time)
+                print(Date(timeIntervalSince1970: candles.last!.time))
+                
                 
             } catch let error as NSError {
                 print("Failed to get stats:  \(error.localizedDescription)")
